@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "PayHelper Extension Sample",
+  "version": "1.0",
+  "description": "A Chrome extension using PayHelper.js",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.payhelper.top/*"],
+      "js": ["dist/PayHelper.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["http://*/", "https://*/"],
+      "js": ["dist/PayHelper.js", "content.js"]
+    }
+  ]
+}
